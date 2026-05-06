@@ -1,0 +1,25 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace TrainingCenterApi.Models;
+
+public class Room
+{
+    public int Id { get; set; }
+
+    [Required]
+    [RegularExpression(@".*\S.*", ErrorMessage = "Name cannot be empty.")]
+    public string Name { get; set; } = string.Empty;
+
+    [Required]
+    [RegularExpression(@".*\S.*", ErrorMessage = "BuildingCode cannot be empty.")]
+    public string BuildingCode { get; set; } = string.Empty;
+
+    public int Floor { get; set; }
+
+    [Range(1, int.MaxValue, ErrorMessage = "Capacity must be greater than zero.")]
+    public int Capacity { get; set; }
+
+    public bool HasProjector { get; set; }
+
+    public bool IsActive { get; set; }
+}

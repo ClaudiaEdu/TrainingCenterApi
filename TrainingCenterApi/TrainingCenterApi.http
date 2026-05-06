@@ -1,0 +1,96 @@
+@TrainingCenterApi_HostAddress = http://localhost:5166
+
+GET {{TrainingCenterApi_HostAddress}}/api/rooms
+Accept: application/json
+
+###
+
+GET {{TrainingCenterApi_HostAddress}}/api/rooms/2
+Accept: application/json
+
+###
+
+GET {{TrainingCenterApi_HostAddress}}/api/rooms/building/B
+Accept: application/json
+
+###
+
+GET {{TrainingCenterApi_HostAddress}}/api/rooms?minCapacity=20&hasProjector=true&activeOnly=true
+Accept: application/json
+
+###
+
+POST {{TrainingCenterApi_HostAddress}}/api/rooms
+Content-Type: application/json
+
+{
+  "name": "Lab 204",
+  "buildingCode": "B",
+  "floor": 2,
+  "capacity": 24,
+  "hasProjector": true,
+  "isActive": true
+}
+
+###
+
+PUT {{TrainingCenterApi_HostAddress}}/api/rooms/1
+Content-Type: application/json
+
+{
+  "name": "Lab 101",
+  "buildingCode": "A",
+  "floor": 1,
+  "capacity": 20,
+  "hasProjector": true,
+  "isActive": true
+}
+
+###
+
+GET {{TrainingCenterApi_HostAddress}}/api/reservations
+Accept: application/json
+
+###
+
+GET {{TrainingCenterApi_HostAddress}}/api/reservations/1
+Accept: application/json
+
+###
+
+GET {{TrainingCenterApi_HostAddress}}/api/reservations?date=2026-05-10&status=confirmed&roomId=2
+Accept: application/json
+
+###
+
+POST {{TrainingCenterApi_HostAddress}}/api/reservations
+Content-Type: application/json
+
+{
+  "roomId": 2,
+  "organizerName": "Anna Kowalska",
+  "topic": "Warsztaty z HTTP i REST",
+  "date": "2026-05-10",
+  "startTime": "12:30:00",
+  "endTime": "13:30:00",
+  "status": "confirmed"
+}
+
+###
+
+POST {{TrainingCenterApi_HostAddress}}/api/reservations
+Content-Type: application/json
+
+{
+  "roomId": 2,
+  "organizerName": "Anna Kowalska",
+  "topic": "Kolizja czasowa",
+  "date": "2026-05-10",
+  "startTime": "11:00:00",
+  "endTime": "13:00:00",
+  "status": "confirmed"
+}
+
+###
+
+DELETE {{TrainingCenterApi_HostAddress}}/api/reservations/1
